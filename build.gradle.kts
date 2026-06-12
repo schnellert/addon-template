@@ -32,6 +32,10 @@ labyMod {
     }
 }
 
+val javaVersion = JavaVersion.toVersion(
+    rootProject.file(".java-version").readText().trim()
+)
+
 subprojects {
     plugins.apply("net.labymod.labygradle")
     plugins.apply("net.labymod.labygradle.addon")
@@ -40,7 +44,7 @@ subprojects {
     version = rootProject.version
 
     extensions.findByType(JavaPluginExtension::class.java)?.apply {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
 }
